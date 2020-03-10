@@ -1,4 +1,5 @@
 ﻿using Blog.Data.Contexts.Configurations;
+using Blog.Data.Resources;
 using Blog.Models;
 using Microsoft.EntityFrameworkCore;
 
