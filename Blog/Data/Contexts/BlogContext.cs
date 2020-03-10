@@ -1,4 +1,5 @@
-﻿using Blog.Models;
+﻿using Blog.Data.Contexts.Configurations;
+using Blog.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Data.Contexts
