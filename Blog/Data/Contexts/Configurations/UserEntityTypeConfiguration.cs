@@ -17,9 +17,17 @@ namespace Blog.Data.Contexts.Configurations
             builder.Property(prop => prop.LastName).HasColumnName("last_name").HasMaxLength(20).IsRequired();
             builder.Property(prop => prop.Posts).HasColumnName("posts").HasConversion(
                 posts => JsonConvert.SerializeObject(posts,
-                        new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore}),
+                        new JsonSerializerSettings
+                        {
+                            NullValueHandling = NullValueHandling.Ignore,
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        }),
                 posts => JsonConvert.DeserializeObject<List<Post>>(posts,
-                        new JsonSerializerSettings {NullValueHandling = NullValueHandling.Ignore}));
+                        new JsonSerializerSettings
+                        {
+                            NullValueHandling = NullValueHandling.Ignore,
+                            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                        }));
         }
     }
 }
