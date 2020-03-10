@@ -10,7 +10,7 @@ namespace Blog.Data.Contexts.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("user");
+            builder.ToTable("user_data");
             builder.HasKey(prop => prop.Id);
             builder.Property(prop => prop.Id).HasColumnName("id").ValueGeneratedOnAdd();
             builder.Property(prop => prop.FirstName).HasColumnName("first_name").HasMaxLength(50).IsRequired();
