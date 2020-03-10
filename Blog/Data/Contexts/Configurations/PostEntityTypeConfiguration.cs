@@ -11,7 +11,7 @@ namespace Blog.Data.Contexts.Configurations
             builder.ToTable("post");
             builder.HasKey(prop => prop.Id);
             builder.HasOne(p => p.User)
-                   .WithMany(u => u.Posts)
+                   .WithMany()
                    .HasForeignKey(p => p.UserId);
             builder.Property(prop => prop.Id).HasColumnName("id").ValueGeneratedOnAdd();
             builder.Property(prop => prop.UserId).HasColumnName("user_id").IsRequired();
