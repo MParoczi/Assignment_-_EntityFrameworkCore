@@ -38,7 +38,7 @@ namespace Blog
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, BlogContext context)
         {
             if (env.IsDevelopment())
             {
@@ -51,6 +51,8 @@ namespace Blog
                 app.UseHsts();
             }
 
+            DbInitializer.Initialize(context);
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
