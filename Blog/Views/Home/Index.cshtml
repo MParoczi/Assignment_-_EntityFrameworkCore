@@ -1,11 +1,18 @@
-﻿@model IEnumerable<User>
+﻿@model dynamic
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    @foreach (var item in Model)
+<div class="text-left">
+    @foreach (User author in Model.Users)
     {
-        <h1>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</h1>
+        <h1 class="text-info">@author.FirstName @author.LastName</h1>
+        @foreach (Post post in Model.Posts)
+        {
+            if (post.UserId == author.Id)
+            {
+                <h2 class="font-italic">"@post.Content"</h2>
+            }
+        }
     }
 </div>
