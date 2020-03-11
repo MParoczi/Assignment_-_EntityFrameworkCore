@@ -1,6 +1,11 @@
-﻿@{
+﻿@model IEnumerable<User>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
+    @foreach (var item in Model)
+    {
+        <h1>@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)</h1>
+    }
 </div>

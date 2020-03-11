@@ -7,6 +7,7 @@ using Blog.Data.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Blog.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Controllers
 {
@@ -21,9 +22,12 @@ namespace Blog.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<User> users = await _context.Users.ToListAsync();
+            List<Post> posts = _context.Posts.ToList();
+            
+            return View(users);
         }
 
         public IActionResult Privacy()
