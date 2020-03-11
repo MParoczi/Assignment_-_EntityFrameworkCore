@@ -3,3 +3,4 @@ obj/
 /packages/
 .idea
 .vs
+Blog/connection.env

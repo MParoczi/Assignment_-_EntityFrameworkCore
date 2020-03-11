@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Blog.Models.User>
+@{
+    ViewData["Title"] = "Authors";
+}
+<div class="text-center">
+    @foreach (User user in Model)
+    {
+        <a asp-route-id=@user.Id asp-controller="Author" asp-action="Posts"><h1>@user.FirstName @user.LastName</h1></a>
+    }
+</div>

@@ -1,31 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Dynamic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
+using Blog.Data.Contexts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Blog.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Blog.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly BlogContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, BlogContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
-        }
+            dynamic myModel = new ExpandoObject();
+            myModel.Users = await _context.Users.ToListAsync();
+            myModel.Posts = await _context.Posts.ToListAsync();
 
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(myModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
