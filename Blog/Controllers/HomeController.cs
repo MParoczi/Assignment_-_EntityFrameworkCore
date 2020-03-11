@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Dynamic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Blog.Data.Contexts;
 using Microsoft.AspNetCore.Mvc;
@@ -24,10 +22,11 @@ namespace Blog.Controllers
 
         public async Task<IActionResult> Index()
         {
-            List<User> users = await _context.Users.ToListAsync();
-            List<Post> posts = _context.Posts.ToList();
-            
-            return View(users);
+            dynamic myModel = new ExpandoObject();
+            myModel.Users = await _context.Users.ToListAsync();
+            myModel.Posts = await _context.Posts.ToListAsync();
+
+            return View(myModel);
         }
 
         public IActionResult Privacy()
